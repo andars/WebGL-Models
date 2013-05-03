@@ -1,6 +1,30 @@
-
     var gl;
+    
     var pMatrix = mat4.create();
+    (function() {
+    var lastTime = 0;
+    var vendors = ['webkit', 'moz'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame =
+          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+    }());
     
     function checkUndefined(functionName, args) {
   		for (var ii = 0; ii < args.length; ++ii) {
@@ -175,14 +199,13 @@ function drawScene() {
 		
     }
 var lasttime = 0;
-function update() {
-		if (update.lasttime === undefined)
-			update.lasttime = 0;
+function update(time) {
+		window.requestAnimationFrame(update);
 	
-    	webkitRequestAnimationFrame(update);
+    	
     	drawScene();
     	update.currtime = new Date().getTime();
-    	update.elapsed = update.currtime - update.lasttime;
+    	update.elapsed = time - update.lasttime||0;
     	
     	//pyramid.update(update.elapsed);
     	cam.update(update.elapsed);
@@ -206,7 +229,7 @@ function webGLStart() {
         //gl.cullFace(gl.BACK);
         //gl.disable(CULL_FACE);
 		//lockPointer();
-        update();
+        update(new Date().getTime());
 }
 function lockPointer() {
 		var canvas = document.getElementById("canvas");
