@@ -178,7 +178,7 @@ function update() {
 		if (update.lasttime === undefined)
 			update.lasttime = 0;
 	
-    	requestAnimationFrame(update);
+    	window.setTimeout(update,1/60*1000);
     	drawScene();
     	update.currtime = new Date().getTime();
     	update.elapsed = update.currtime - update.lasttime;
