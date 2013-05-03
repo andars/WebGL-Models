@@ -1,4 +1,3 @@
-
     var gl;
     var pMatrix = mat4.create();
     
@@ -179,7 +178,7 @@ function update() {
 		if (update.lasttime === undefined)
 			update.lasttime = 0;
 	
-    	webkitRequestAnimationFrame(update);
+    	requestAnimationFrame(update);
     	drawScene();
     	update.currtime = new Date().getTime();
     	update.elapsed = update.currtime - update.lasttime;
