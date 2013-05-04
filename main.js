@@ -120,6 +120,7 @@
         //gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
 
         shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+        shaderProgram.nMatrixUniform = gl.getUniformLocation(shaderProgram, "uNormalMatrix");
         //shaderProgram.mMatrixUniform = gl.getUniformLocation(shaderProgram, "uMMatrix");
         //shaderProgram.vMatrixUniform = gl.getUniformLocation(shaderProgram, "uVMatrix");
         shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
@@ -135,6 +136,7 @@
 	
 	function modelPush(){
 		var copy = mat4.clone(modelMatrix);
+		
 		modelMatrixStack.push(copy)
 	}
 	function modelPop(){
@@ -147,7 +149,10 @@ function setMatrixUniforms(modelmat) {
     
     var mv = mat4.create();
     mat4.mul(mv,cam.getMatrix(),modelmat);
+    var normal = mat3.create();
+	mat3.fromNormalMat4(normal,mv);
    gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mv);
+   gl.uniformMatrix3fv(shaderProgram.nMatrixUniform, false, normal);
     //gl.uniformMatrix4fv(shaderProgram.vMatrixUniform,false,cam.matrix);
 }
 
