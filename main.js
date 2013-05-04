@@ -150,7 +150,7 @@ function setMatrixUniforms(modelmat) {
     var mv = mat4.create();
     mat4.mul(mv,cam.getMatrix(),modelmat);
     var normal = mat3.create();
-	mat3.fromNormalMat4(normal,mv);
+	mat3.normalFromMat4(normal,mv);
    gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mv);
    gl.uniformMatrix3fv(shaderProgram.nMatrixUniform, false, normal);
     //gl.uniformMatrix4fv(shaderProgram.vMatrixUniform,false,cam.matrix);
