@@ -16,17 +16,17 @@
 </script>
 
 <script id="shader-vs" type="x-shader/x-vertex">
-    attribute vec3 aVertexPosition;
+    attribute mediump vec3 aVertexPosition;
     
-	attribute vec3 aVertexNormal;
-    uniform mat4 uMMatrix;
+	attribute mediump vec3 aVertexNormal;
+    uniform mediump mat4 uMMatrix;
     
    
-    uniform mat4 uVMatrix;
-    uniform mat4 uPMatrix;
+    uniform mediump mat4 uVMatrix;
+    uniform mediump mat4 uPMatrix;
     //uniform mat4 uMVMatrix;
-	uniform vec3 uLightDirection;
-    varying float vLight;
+	uniform mediump vec3 uLightDirection;
+    varying mediump float vLight;
 	
     void main(void) {
     	
