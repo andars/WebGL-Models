@@ -122,6 +122,7 @@
         shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
         shaderProgram.mMatrixUniform = gl.getUniformLocation(shaderProgram, "uMMatrix");
         shaderProgram.vMatrixUniform = gl.getUniformLocation(shaderProgram, "uVMatrix");
+        shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
         shaderProgram.lightingDirectionUniform= gl.getUniformLocation(shaderProgram, "uLightDirection");
         //shaderProgram.positionUniform = gl.getUniformLocation(shaderProgram, "uPosition");
         console.log(shaderProgram.vertexPositionAttribute);
@@ -146,7 +147,7 @@ function setMatrixUniforms(modelmat) {
     
     var mv = mat4.create();
     mat4.mul(mv,cam.getMatrix(),modelmat);
-   gl.uniformMatrix4fv(shaderProgram.mMatrixUniform, false, mv);
+   gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mv);
     //gl.uniformMatrix4fv(shaderProgram.vMatrixUniform,false,cam.matrix);
 }
 
