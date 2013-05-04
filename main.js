@@ -200,8 +200,8 @@ function drawScene() {
 var lasttime = 0;
 function update(time) {
 	
-    	//window.requestAnimationFrame(update);
-    	window.setTimeout(update,1000/60);
+    	window.requestAnimationFrame(update);
+    	
     	drawScene();
     	
     	update.elapsed = time - update.lasttime||0;
