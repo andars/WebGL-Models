@@ -31,12 +31,12 @@
     void main(void) {
     	
     	mat4 MVMatrix = uVMatrix*uMMatrix;
-    	mat3 normalMatrix = mat3(MVMatrix[0][0], MVMatrix[1][0], MVMatrix[2][0], MVMatrix[0][1], MVMatrix[1][1], MVMatrix[2][1], MVMatrix[0][2], MVMatrix[1][2], MVMatrix[2][2]);
+    	//mat3 normalMatrix = mat3(MVMatrix[0][0], MVMatrix[1][0], MVMatrix[2][0], MVMatrix[0][1], MVMatrix[1][1], MVMatrix[2][1], MVMatrix[0][2], MVMatrix[1][2], MVMatrix[2][2]);
         gl_Position = uPMatrix*uVMatrix*uMMatrix*vec4(aVertexPosition, 1.0);
         //vec3 normal =aVertexNormal*-1.0;
-        vec3 lightDirection = uLightDirection*normalMatrix;	
-       vec3 normal = normalize(aVertexNormal*normalMatrix);
-       	vLight = max(dot(aVertexNormal,uLightDirection),0.0);
+        //vec3 lightDirection = uLightDirection*normalMatrix;	
+        //vec3 normal = normalize(aVertexNormal*normalMatrix);
+       	vLight = 0.5; //max(dot(aVertexNormal,uLightDirection),0.0);
     }
 </script>
 
