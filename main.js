@@ -143,9 +143,10 @@
     
 function setMatrixUniforms(modelmat) {
     //gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, p);
-    gl.uniformMatrix4fv(shaderProgram.mMatrixUniform, false, modelmat);
     
-   
+    var mv = mat4.create();
+    mat4.mul(mv,cam.getMatrix(),modelmat);
+   gl.uniformMatrix4fv(shaderProgram.mMatrixUniform, false, mv);
     //gl.uniformMatrix4fv(shaderProgram.vMatrixUniform,false,cam.matrix);
 }
 
@@ -189,7 +190,7 @@ function drawScene() {
       	vec3.scale(adjustedLD,adjustedLD, -1);
       	//console.log(adjustedLD);
       	gl.uniform3fv(shaderProgram.lightingDirectionUniform, adjustedLD);
-		 gl.uniformMatrix4fv(shaderProgram.vMatrixUniform,false,cam.getMatrix());
+	//gl.uniformMatrix4fv(shaderProgram.vMatrixUniform,false,cam.getMatrix());
        
         mat4.identity(modelMatrix);
 		
