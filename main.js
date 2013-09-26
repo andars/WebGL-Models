@@ -200,16 +200,18 @@ function drawScene() {
     }
 var lasttime = 0;
 function update(time) {
-		window.requestAnimationFrame(update);
+		
 	
     	
-    	drawScene();
+    	
     	update.currtime = new Date().getTime();
     	update.elapsed = time - update.lasttime||0;
     	
     	//pyramid.update(update.elapsed);
     	cam.update(update.elapsed);
     	update.lasttime = update.currtime;
+    	window.requestAnimationFrame(update);
+    	drawScene();
 }
 
 
