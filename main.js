@@ -210,6 +210,7 @@ function update(time) {
     	//pyramid.update(update.elapsed);
     	cam.update(update.elapsed);
     	update.lasttime = update.currtime;
+    	console.log(update.elapsed);
     	window.requestAnimationFrame(update);
     	drawScene();
 }
